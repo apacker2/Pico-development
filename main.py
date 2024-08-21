@@ -4,7 +4,7 @@ from machine import Pin
 from machine import PWM
 from machine import I2C, SoftI2C
 from time import sleep
-from lib.lis2hh12 import LIS2HH12
+from lib.lis2dw12 import LIS2HH12
 
 led_pwm = PWM(Pin(6))
 
