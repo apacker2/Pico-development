@@ -5,48 +5,19 @@ from machine import PWM
 from machine import I2C, SoftI2C
 from time import sleep
 from lib.lis2dw12 import LIS2DW12
+from led.dimmer import Light
 
 led_pwm = PWM(Pin(6))
 
 led_pwm.freq(1000)
 
 led_pwm.duty_u16(30000)
-
-
-class LED: # class to allow controlling of LED brightness
-  brightness: float
-  state: int # 1 = on, 0 = off
-  pin: PWM
-  def __init__(self, pin_num: int, brightness=10.0, state=1) -> None:
-    self.pin = PWM(Pin(pin_num))
-    self.brightness = brightness
-    self.state = state
-    self.value(state)
-  def value(self, val=None) -> int | None:
-    if val == None:
-      return self.state
-    else:
-      if val == 0:
-        # turn off
-        self.pin.deinit()
-      elif val == 1:
-        self.init()
-  def dim(self, brightness: float):
-    if brightness >= 0 and brightness <= 100:
-      self.brightness = brightness
-      self.init()
-
-  def init(self):
-    self.pin.freq(1000)
-    self.pin.duty_u16(int(self.brightness / 100 * 65536 - 1))
   
 
-        
-
 def dimmer():
-  led1 = LED(2)
-  led2 = LED(3)
-  led3 = LED(6)
+  led1 = Light(2)
+  led2 = Light(3)
+  led3 = Light(6)
   i = 0
   while True:
     i += math.pi / 1000
@@ -78,7 +49,7 @@ def i2c():
 
 print(__name__)
 if __name__ == "__main__":
-  i2c()
+  
   dimmer()
   
 
