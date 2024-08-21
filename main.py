@@ -4,7 +4,7 @@ from machine import Pin
 from machine import PWM
 from machine import I2C, SoftI2C
 from time import sleep
-from lib.lis2dw12 import LIS2HH12
+from lib.lis2dw12 import LIS2DW12
 
 led_pwm = PWM(Pin(6))
 
@@ -71,12 +71,10 @@ def i2c():
   # addresses: 25, 60
   # 25 (0x19): accelerometer
   # 60 (0x3C): OLED
-  sensor = LIS2HH12(i2c, address=25)
- 
+  sensor = LIS2DW12(i2c, address=25)
   while True:
-    sleep(0.01)
-
-
+    print(sensor.acceleration)
+    sleep(1)
 
 print(__name__)
 if __name__ == "__main__":
