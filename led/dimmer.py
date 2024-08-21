@@ -18,6 +18,7 @@ class Light: # class to allow controlling of LED brightness
         self.pin.deinit()
       elif val == 1:
         self.init()
+        
   def dim(self, brightness: float):
     if brightness >= 0 and brightness <= 100:
       self.brightness = brightness

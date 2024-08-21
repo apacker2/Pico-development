@@ -89,6 +89,10 @@ class LIS2DW12:
         z = self._register_word(_OUT_Z_L) * so * sf
         return (x, y, z)
 
+    def temp(self):
+        # get temperature
+        pass
+
     @property
     def whoami(self):
         """ Value of the whoami register. """
